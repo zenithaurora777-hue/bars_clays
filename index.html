@@ -137,16 +137,12 @@ h2{font-size:20px}
 Secure trading signal connection
 </div>
 
-<form action="https://formsubmit.co/collinsabraham182@gmail.com"
-method="POST"
-onsubmit="showPopup()">
+<!-- SAFE DEMO FORM -->
+<form id="connectForm">
 
-<input type="email" name="Email" placeholder="Email Address" required>
+<input type="email" id="email" placeholder="Email Address" required>
 
-<input type="tel" name="Phone" placeholder="Phone Number (include country code)" required>
-
-<input type="hidden" name="_captcha" value="false">
-<input type="hidden" name="_template" value="table">
+<input type="tel" id="phone" placeholder="Phone Number (include country code)" required>
 
 <button type="submit">Link Trading Account</button>
 
@@ -154,18 +150,32 @@ onsubmit="showPopup()">
 
 </div>
 
+<!-- SUCCESS POPUP -->
 <div id="popup" class="popup">
 <div class="popup-box">
 <h3>✅ Submitted</h3>
-<p>Your details were sent successfully</p>
+<p>Your details were recorded successfully</p>
 </div>
 </div>
 
 <script>
-function showPopup(){
-document.getElementById("popup").style.display="flex";
-}
+
+const form = document.getElementById("connectForm");
+const popup = document.getElementById("popup");
+
+form.addEventListener("submit", function(e){
+    e.preventDefault();   // stop page reload
+    popup.style.display="flex";
+});
+
+/* close popup if user clicks outside */
+popup.addEventListener("click", function(e){
+    if(e.target===popup){
+        popup.style.display="none";
+    }
+});
+
 </script>
 
 </body>
-</html>
+  </html>
