@@ -2,180 +2,156 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Zenith Connect</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bars Clays - Success</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
-
-body{
-background:#f5f6fa;
-min-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-padding:70px 15px 20px;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-/* TOP HEADER */
-.top{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-padding:16px 18px;
-background:linear-gradient(90deg,#fcd535,#f0b90b);
-font-weight:bold;
-display:flex;
-align-items:center;
-gap:10px;
-z-index:10;
+body {
+    background-color: #0B0E11;
+    color: #EAECEF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
 }
 
-.logo{
-width:32px;
-height:32px;
-background:black;
-border-radius:6px;
+.container {
+    background-color: #1E2329;
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    max-width: 400px;
+    width: 90%;
 }
 
-.container{
-background:white;
-width:100%;
-max-width:420px;
-padding:28px 22px;
-border-radius:16px;
-box-shadow:0 12px 35px rgba(0,0,0,0.12);
+.checkmark {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 20px auto;
+    background-color: #0ECB81;
+    animation: pop 0.5s ease forwards;
+    position: relative;
 }
 
-h2{margin-bottom:8px;font-size:22px}
-
-.subtitle{
-margin-bottom:22px;
-color:#666;
-font-size:14px;
+.checkmark::after {
+    content: '✔';
+    font-size: 40px;
+    color: #fff;
+    opacity: 0;
+    animation: fadeIn 0.5s ease 0.5s forwards;
 }
 
-/* INPUTS */
-input{
-width:100%;
-padding:15px;
-margin-bottom:14px;
-border-radius:10px;
-border:1px solid #ddd;
-font-size:16px;
+@keyframes pop {
+    0% { transform: scale(0); }
+    100% { transform: scale(1); }
 }
 
-input:focus{
-outline:none;
-border-color:#fcd535;
-box-shadow:0 0 0 3px rgba(252,213,53,.25);
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
 }
 
-/* BUTTON */
-button{
-width:100%;
-padding:16px;
-border:none;
-border-radius:10px;
-font-size:16px;
-font-weight:bold;
-cursor:pointer;
-background:#fcd535;
+h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #0ECB81;
 }
 
-button:hover{background:#f0b90b}
-
-/* SUCCESS POPUP */
-.popup{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,.45);
-display:none;
-justify-content:center;
-align-items:center;
-padding:20px;
+p {
+    font-size: 14px;
+    color: #B7BDC6;
+    margin-bottom: 25px;
 }
 
-.popup-box{
-background:white;
-padding:35px 28px;
-border-radius:16px;
-text-align:center;
-animation:pop .35s ease;
-max-width:320px;
-width:100%;
+/* Simulated account info box */
+.account-box {
+    background-color: #272B33;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    text-align: left;
 }
 
-@keyframes pop{
-from{transform:scale(.7);opacity:0}
-to{transform:scale(1);opacity:1}
+.account-box h2 {
+    font-size: 16px;
+    color: #FCD535;
+    margin-bottom: 10px;
 }
 
-/* MOBILE POLISH */
-@media(max-width:420px){
-h2{font-size:20px}
+.account-box p {
+    font-size: 14px;
+    color: #EAECEF;
+    margin: 4px 0;
+}
+
+.button-back {
+    padding: 12px 25px;
+    border-radius: 8px;
+    border: none;
+    font-weight: bold;
+    font-size: 14px;
+    background-color: #FCD535;
+    color: #000;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.button-back:hover {
+    background-color: #e6b800;
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+    .container {
+        padding: 30px 20px;
+    }
+    .checkmark {
+        width: 60px;
+        height: 60px;
+    }
+    .checkmark::after {
+        font-size: 30px;
+    }
+    h1 {
+        font-size: 20px;
+    }
+    p, .account-box p {
+        font-size: 13px;
+    }
+    .account-box h2 {
+        font-size: 15px;
+    }
 }
 </style>
 </head>
-
 <body>
 
-<div class="top">
-<div class="logo"></div>
-<div>Zenith Connect</div>
-</div>
-
 <div class="container">
+    <div class="checkmark"></div>
+    <h1>Account Linked Successfully!</h1>
+    <p>Your Bars Clays account details have been received safely.</p>
 
-<h2>Connect Software Signals</h2>
+    <div class="account-box">
+        <h2>Account Summary</h2>
+        <p>Account Name: John Doe</p>
+        <p>Account Status: Active</p>
+        <p>Wallet Balance: $0.00</p>
+    </div>
 
-<div class="subtitle">
-Secure trading signal connection
+    <button class="button-back" onclick="window.location.href='index.html'">Back to Home</button>
 </div>
-
-<!-- SAFE DEMO FORM -->
-<form id="connectForm">
-
-<input type="email" id="email" placeholder="Email Address" required>
-
-<input type="tel" id="phone" placeholder="Phone Number (include country code)" required>
-
-<button type="submit">Link Trading Account</button>
-
-</form>
-
-</div>
-
-<!-- SUCCESS POPUP -->
-<div id="popup" class="popup">
-<div class="popup-box">
-<h3>✅ Submitted</h3>
-<p>Your details were recorded successfully</p>
-</div>
-</div>
-
-<script>
-
-const form = document.getElementById("connectForm");
-const popup = document.getElementById("popup");
-
-form.addEventListener("submit", function(e){
-    e.preventDefault();   // stop page reload
-    popup.style.display="flex";
-});
-
-/* close popup if user clicks outside */
-popup.addEventListener("click", function(e){
-    if(e.target===popup){
-        popup.style.display="none";
-    }
-});
-
-</script>
 
 </body>
 </html>
