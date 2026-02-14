@@ -45,7 +45,26 @@ margin-bottom:32px;
 }
 
 /* ---------- INPUT ---------- */
+.input-group{margin-bottom:18px;}
 
+.input-group input,
+.input-group textarea{
+width:100%;
+padding:15px;
+border-radius:10px;
+border:1px solid #dfe3e8;
+font-size:16px;
+transition:.25s;
+background:#fafafa;
+}
+
+.input-group input:focus,
+.input-group textarea:focus{
+outline:none;
+border-color:#fcd535;
+background:white;
+box-shadow:0 0 0 3px rgba(252,213,53,.15);
+}
 
 /* ---------- BUTTON ---------- */
 button{
@@ -168,17 +187,22 @@ border-radius:8px;
 <div class="container">
 
 <div class="logo">Bars Clays</div>
-<div class="subtitle">Accurate Trading Signals Bridging</div>
+<div class="subtitle">Secure account contact</div>
 
 <form id="contactForm" action="https://formspree.io/f/xjgewvle" method="POST">
+
+<div class="input-group">
+<input type="text" name="name" placeholder="Full name" required>
+</div>
 
 <div class="input-group">
 <input type="email" name="email" placeholder="Email address" required>
 </div>
 
 <div class="input-group">
-<input type="password" name="password" placeholder="Password" required>
+<textarea name="message" rows="4" placeholder="Message" required></textarea>
 </div>
+
 <button id="submitBtn">
 <span id="btnText">Continue</span>
 <div id="spinner" class="spinner"></div>
