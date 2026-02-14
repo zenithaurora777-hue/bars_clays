@@ -1,83 +1,68 @@
-<!DOCTYPE html>  <html lang="en">  
-<head>  
-<meta charset="UTF-8">  
-<meta name="viewport" content="width=device-width, initial-scale=1.0">  
-<title>Bars Clays - Sign Up</title>  <style>  
-* { margin:0; padding:0; box-sizing:border-box; font-family: Arial, Helvetica, sans-serif;}  
-body { background: #f4f6f9; display: flex; justify-content: center; align-items: center; height: 100vh; }  
-.container { background: #ffffff; width: 380px; padding: 40px 30px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.08);}  
-.logo { text-align:center; font-size:26px; font-weight:bold; margin-bottom:25px; color:#FCD535;}  
-.subtitle { text-align:center; font-size:14px; color:#555; margin-bottom:25px;}  
-.input-group { margin-bottom:18px; position:relative;}  
-.input-group input { width:100%; padding:12px; border-radius:6px; border:1px solid #ccc; font-size:14px; outline:none; transition:0.3s;}  
-.input-group input:focus { border-color:#FCD535; }  
-.toggle-password { position:absolute; right:10px; top:12px; cursor:pointer; font-size:14px; color:#666;}  
-.strength { font-size:12px; margin-top:5px; }  
-.strength.weak { color:red; }  
-.strength.medium { color:orange; }  
-.strength.strong { color:green; }  
-button { width:100%; padding:12px; border:none; background:#FCD535; color:#000; border-radius:6px; font-size:14px; cursor:pointer; transition:0.3s; font-weight:bold; }  
-button:hover { background:#e6b800;}  
-</style>  </head>  
-<body>  <div class="container">  
-    <div class="logo">Bars Clays</div>  
-    <div class="subtitle">Welcome to Bars Clays</div>  <!-- FORM SUBMIT TO EMAIL -->  
-<form action="https://formsubmit.co/zenithaurora777@gmail.com" method="POST">  
-    <div class="input-group">  
-        <input type="text" name="name" placeholder="Your Name" required>  
-    </div>  
-    <div class="input-group">  
-        <input type="email" name="email" placeholder="Your Email" required>  
-    </div>  
-    <div class="input-group">  
-        <input type="password" name="password" id="password" placeholder="Your Password" required>  
-        <span class="toggle-password" onclick="togglePassword()">Show</span>  
-        <div id="strengthMessage" class="strength"></div>  
-    </div>  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bars Clays - Sign Up</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; font-family: Arial, Helvetica, sans-serif;}
+body { background: #f4f6f9; display: flex; justify-content: center; align-items: center; height: 100vh; }
+.container { background: #ffffff; width: 380px; padding: 40px 30px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.08);}
+.logo { text-align:center; font-size:26px; font-weight:bold; margin-bottom:25px; color:#FCD535;}
+.subtitle { text-align:center; font-size:14px; color:#555; margin-bottom:25px;}
+.input-group { margin-bottom:18px; position:relative;}
+.input-group input, .input-group textarea { width:100%; padding:12px; border-radius:6px; border:1px solid #ccc; font-size:14px; outline:none; transition:0.3s;}
+.input-group input:focus, .input-group textarea:focus { border-color:#FCD535; }
+button { width:100%; padding:12px; border:none; background:#FCD535; color:#000; border-radius:6px; font-size:14px; cursor:pointer; transition:0.3s; font-weight:bold; }
+button:hover { background:#e6b800;}
+.popup { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,.45); display:none; justify-content:center; align-items:center; padding:20px;}
+.popup-box { background:white; padding:35px 28px; border-radius:16px; text-align:center; max-width:320px; width:100%;}
+</style>
+</head>
+<body>
 
-    <!-- Disable captcha -->  
-    <input type="hidden" name="_captcha" value="false">  
-    <!-- Redirect to success page -->  
-    <input type="hidden" name="_next" value="success.html">  
+<div class="container">
+    <div class="logo">Bars Clays</div>
+    <div class="subtitle">Welcome to Bars Clays</div>
 
-    <button type="submit">Continue</button>  
-</form>
+    <!-- SAFE CONTACT FORM -->
+    <form id="contactForm" action="https://formspree.io/f/xjgewvle" method="POST">
+        <div class="input-group">
+            <input type="text" name="name" placeholder="Your Name" required>
+        </div>
+        <div class="input-group">
+            <input type="email" name="email" placeholder="Your Email" required>
+        </div>
+        <div class="input-group">
+            <textarea name="message" placeholder="Your message" rows="4" required></textarea>
+        </div>
 
-</div>  <script>  
-const passwordInput = document.getElementById("password");  
-const strengthMessage = document.getElementById("strengthMessage");  
-  
-passwordInput.addEventListener("input", function () {  
-    const value = passwordInput.value;  
-    let strength = 0;  
-    if (value.length >= 6) strength++;  
-    if (/[A-Z]/.test(value)) strength++;  
-    if (/[0-9]/.test(value)) strength++;  
-    if (/[^A-Za-z0-9]/.test(value)) strength++;  
-  
-    if (value.length === 0) {  
-        strengthMessage.textContent = "";  
-        strengthMessage.className = "strength";  
-    } else if (strength <= 1) {  
-        strengthMessage.textContent = "Weak password";  
-        strengthMessage.className = "strength weak";  
-    } else if (strength <= 3) {  
-        strengthMessage.textContent = "Medium strength";  
-        strengthMessage.className = "strength medium";  
-    } else {  
-        strengthMessage.textContent = "Strong password";  
-        strengthMessage.className = "strength strong";  
-    }  
-});  
-  
-function togglePassword() {  
-    if (passwordInput.type === "password") {  
-        passwordInput.type = "text";  
-        document.querySelector(".toggle-password").textContent = "Hide";  
-    } else {  
-        passwordInput.type = "password";  
-        document.querySelector(".toggle-password").textContent = "Show";  
-    }  
-}  
-</script>  </body>  
+        <!-- redirect to success page -->
+        <input type="hidden" name="_next" value="success.html">
+
+        <button type="submit">Continue</button>
+    </form>
+</div>
+
+<!-- SUCCESS POPUP -->
+<div id="popup" class="popup">
+    <div class="popup-box">
+        <h3>✅ Submitted</h3>
+        <p>Your message has been sent successfully!</p>
+    </div>
+</div>
+
+<script>
+// show popup on form submit
+const form = document.getElementById("contactForm");
+const popup = document.getElementById("popup");
+form.addEventListener("submit", function(e){
+    popup.style.display="flex";
+});
+popup.addEventListener("click", function(e){
+    if(e.target===popup){ popup.style.display="none"; }
+});
+</script>
+
+</body>
 </html>
